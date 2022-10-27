@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <title>Archivos</title>
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<a class="navbar-brand" href="#"> PATRONES DE DISEÑO</a>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+		</div>
+	</nav>
+        
+        <br><!-- comment -->
+        <br><!-- comment -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+                    <div class="card-body">
+                        <form th:action="@{/root}" method="POST">
+                        <label for="titulo">Título:</label>    
+                        <input id="titulo" type="text" th:name="nombre" required/> 
+                        <input type="submit" class="btn btn-primary btn-sm mb3" value="Nueva Carpeta"/>
+                        <a th:href="@{/root}" class="btn btn-primary btn-sm mb3">Actualizar</a>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <br>
+            <div class="container">
+                <div class="row">
+                    <table class="table table-striped table-bordered">
+                        <tbody>
+                            <tr th:each="root : ${listRoot}">
+                        <div class="col-lg-6 mb-4">
+                            <div class="card">
+                                <img class="card-img-top" src="" alt="">
+
+                                <div class="card-body">
+                                    <label for="titulo">Título:</label>
+                                    <h5 class="card-title" th:text="${root.name}"></h5>
+                                    <label for="titulo">Tamaño:</label>
+                                     <h5 class="card-title" th:text="${root.getSize()}"></h5>
+                                    <p class="card-text" ></p>
+                                    <a th:href="@{/root/view/{name}(name=${root.name})}" class="btn btn-outline-danger">Eliminar</a>
+                                    <a th:href="@{/listSubFolder/view/{name}(name=${root.name})}" class="btn btn-info">Ver</a>
+                                </div>
+                            </div>
+                        </div>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>  
+        </div>
+
+    </body>
+</html>
